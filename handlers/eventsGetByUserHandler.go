@@ -17,6 +17,10 @@ func (handler EventsGetByUserHandler) Path() string {
 	return "/events/get/:user"
 }
 
+func (handler EventsGetByUserHandler) Method() HttpMethod {
+	return GET
+}
+
 func (handler EventsGetByUserHandler) Handle(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	var events []db.Events
 	handler.Database.Database.Where("user = ?", ps.ByName("user")).Find(&events)

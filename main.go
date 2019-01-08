@@ -31,10 +31,15 @@ func main() {
 	}
 	database.Init()
 
-	handlers := handlers.CreateHandlers(&database)
-	for _, handler := range handlers {
-		fmt.Printf("Adding handler %s\n", handler.Path())
-		router.GET(handler.Path(), handler.Handle)
+	httpHandlers := handlers.CreateHandlers(&database)
+	for _, handler := range httpHandlers {
+		if handler.Method() == handlers.GET {
+			fmt.Printf("Adding GET handler %s\n", handler.Path())
+			router.GET(handler.Path(), handler.Handle)
+		} else if handler.Method() == handlers.POST {
+			fmt.Printf("Adding POST handler %s\n", handler.Path())
+			router.POST(handler.Path(), handler.Handle)
+		}
 	}
 
 	log.Fatal(http.ListenAndServe(":9000", router))
