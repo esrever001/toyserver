@@ -20,5 +20,5 @@ func (handler HealthHandler) Method() HttpMethod {
 func (handler HealthHandler) Handle(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	w.Header().Set("Content-Type", "application/json")
 	fmt.Fprint(w, "Welcome!\n")
-	fmt.Printf("OK")
+	fmt.Printf("OK\n")
 }

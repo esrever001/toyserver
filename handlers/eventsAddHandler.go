@@ -31,16 +31,16 @@ func (handler EventsAddHandler) Method() HttpMethod {
 }
 
 func (handler EventsAddHandler) getEvent(request EventsAddRequest) db.Events {
-	timeFromRequest := time.Now()
+	timeFromRequest := time.Now().Unix()
 	if request.Time != nil {
-		timeFromRequest = *request.Time
+		timeFromRequest = (*request.Time).Unix()
 	}
 	return db.Events{
-		User:  request.User,
-		Type:  request.Type,
-		Time:  timeFromRequest,
-		Notes: request.Notes,
-		Image: request.Image,
+		User:      request.User,
+		Type:      request.Type,
+		Timestamp: timeFromRequest,
+		Notes:     request.Notes,
+		Image:     request.Image,
 	}
 }
 

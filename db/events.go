@@ -1,16 +1,14 @@
 package db
 
 import (
-	"time"
-
 	"github.com/jinzhu/gorm"
 )
 
 type Events struct {
 	gorm.Model
-	User  string
-	Type  string
-	Time  time.Time
-	Notes string
-	Image string
+	User      string
+	Type      string
+	Timestamp int64
+	Notes     string
+	Image     string
 }
