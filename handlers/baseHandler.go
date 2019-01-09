@@ -25,5 +25,6 @@ func CreateHandlers(db *db.Database) []BaseHandler {
 		HealthHandler{},
 		EventsAddHandler{Database: db},
 		EventsGetByUserHandler{Database: db},
+		SummaryGetByUserHandler{Database: db},
 	}
 }
